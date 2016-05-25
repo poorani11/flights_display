@@ -1,1 +1,49 @@
-home.html
+<h1>Online Flight bookings with zero booking charges</h1>
+<div class="row">
+    <div class="col-md-4">
+        <h4 toggle-visible class="pull-left">From</h4>
+        <form role="form">
+            <div class="form-group">
+                <select class="form-control" id="sel1" ng-model="city">
+                    <option ng-repeat="city in selectCity">{{city}}</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-3 img_container">
+        <i class="fa fa-exchange exchange" aria-hidden="true"></i>
+    </div>
+    <div class="col-md-4">
+        <h4 toggle-visible class="pull-left">To</h4>
+        <form role="form">
+            <div class="form-group">
+                <select class="form-control" id="sel1" ng-model="city">
+                    <option ng-repeat="city in selectCity">{{city}}</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h4 toggle-visible class="pull-left">Date of Journey</h4>
+        <form role="form">
+            <div class="form-group">
+                <select class="form-control" id="sel1" ng-model="city">
+                    <option ng-repeat="city in selectCity">{{city}}</option>
+                </select>
+            </div>
+        </form>
+    </div>
+     <div class="col-md-3 img_container">
+    </div>
+    <div class="col-md-4">
+        <h4 toggle-visible class="pull-left">No.of Seats</h4>
+        <form role="form">
+            <div class="form-group">
+              <input type="text" ng-model="id" class="form-control" />
+            </div>
+        </form>
+    </div>
+</div>
+<a href="#/bank" class="btn btn-primary">Get Flights</a>
