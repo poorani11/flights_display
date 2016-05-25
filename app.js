@@ -30,10 +30,31 @@ flightApp.factory('JsonService', function($resource) {
   });
 });
 
+//FILTERS
+flightApp.filter('unique', function() {
+   return function(collection, keyname) {
+      var output = [], 
+          keys = [];
+
+      angular.forEach(collection, function(item) {
+          var key = item[keyname];
+          if(keys.indexOf(key) === -1) {
+              keys.push(key);
+              output.push(item);
+          }
+      });
+
+      return output;
+   };
+});
+
 // CONTROLLERS
 flightApp.controller('homeController', ['$scope','JsonService','seatService', function($scope,JsonService,seatService){
     JsonService.query(function(data){
         console.log(data);
+        $scope.list= data;
+        $scope.from_destination=data.From;
+        $scope.to_destination=data.To;
     $scope.seats = data.Seats_available;
   });
     $scope.$watch('seats', function(){

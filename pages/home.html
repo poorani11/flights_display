@@ -4,8 +4,7 @@
         <h4 toggle-visible class="pull-left">From</h4>
         <form role="form">
             <div class="form-group">
-                <select class="form-control" id="sel1" ng-model="city">
-                    <option ng-repeat="city in selectCity">{{city}}</option>
+                <select class="form-control" id="sel1" ng-model="from_destination" ng-options="option.From as option.From for option in list | unique:'From'">
                 </select>
             </div>
         </form>
@@ -17,8 +16,7 @@
         <h4 toggle-visible class="pull-left">To</h4>
         <form role="form">
             <div class="form-group">
-                <select class="form-control" id="sel1" ng-model="city">
-                    <option ng-repeat="city in selectCity">{{city}}</option>
+                <select class="form-control" id="sel1" ng-model="to_destination" ng-options="option.To as option.To for option in list | unique:'To'">
                 </select>
             </div>
         </form>
