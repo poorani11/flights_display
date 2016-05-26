@@ -50,6 +50,11 @@ flightApp.filter('unique', function() {
 
 // CONTROLLERS
 flightApp.controller('homeController', ['$scope','JsonService','seatService', function($scope,JsonService,seatService){
+    
+    $scope.date = {
+         value: convertToDate('10/31/1997 23:00')
+       };
+
     JsonService.query(function(data){
         console.log(data);
         $scope.list= data;
@@ -62,3 +67,10 @@ flightApp.controller('homeController', ['$scope','JsonService','seatService', fu
 
     });
 }]);
+
+  function convertToDate(str) {
+       var arr = str.split(/[\/ :]/);
+       var date = new Date(+arr[2], +arr[0] + 1, +arr[1], +arr[3], +arr[4]);
+       return date;
+       
+     }
