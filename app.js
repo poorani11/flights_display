@@ -17,9 +17,11 @@ flightApp.config(function ($routeProvider){
 });
 
 //SERVICEs
-flightApp.service('seatService', function(){
+flightApp.service('digestService', function(){
 
     this.seats = "29";
+    this.from_destination = "Chennai";
+    this.to_destination = "Delhi";
 
 });
 
@@ -49,7 +51,7 @@ flightApp.filter('unique', function() {
 });
 
 // CONTROLLERS
-flightApp.controller('homeController', ['$scope','JsonService','seatService', function($scope,JsonService,seatService){
+flightApp.controller('homeController', ['$scope','JsonService','digestService', function($scope,JsonService,digestService){
     
     $scope.date = {
          value: convertToDate('DD/MM/YYYY 23:00')
@@ -58,19 +60,26 @@ flightApp.controller('homeController', ['$scope','JsonService','seatService', fu
     JsonService.query(function(data){
         console.log(data);
         $scope.list= data;
-        $scope.from_destination=data.From;
-        $scope.to_destination=data.To;
-    $scope.seats = data.Seats_available;
-  });
-    $scope.$watch('seats', function(){
-        seatService.seats = $scope.seats;
+    });
+
+    $scope.seats = digestService.seats;
+    $scope.from_destination=digestService.from_destination;
+    $scope.to_destination=digestService.to_destination;
+
+    $scope.$watch('[seats,from_destination,to_destination ]', function(){
+        digestService.seats = $scope.seats;
+        digestService.from_destination = $scope.from_destination;
+        digestService.to_destination=$scope.to_destination;
+
 
     });
 }]);
 
-flightApp.controller('flightController', ['$scope','JsonService','seatService', function($scope,JsonService,seatService){
+flightApp.controller('flightController', ['$scope','JsonService','digestService', function($scope,JsonService,digestService){
     
-    
+    $scope.seats = digestService.seats;
+    $scope.from_destination=digestService.from_destination;
+    $scope.to_destination=digestService.to_destination;
 }]);
 
   function convertToDate(str) {
