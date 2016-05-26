@@ -1,5 +1,5 @@
 // MODULE
-var flightApp = angular.module('flightApp', ['ngRoute', 'ngResource']);
+var flightApp = angular.module('flightApp', ['ngRoute', 'ngResource','ngCookies']);
 
 // ROUTES
 flightApp.config(function ($routeProvider){
@@ -52,7 +52,7 @@ flightApp.filter('unique', function() {
 flightApp.controller('homeController', ['$scope','JsonService','seatService', function($scope,JsonService,seatService){
     
     $scope.date = {
-         value: convertToDate('10/31/1997 23:00')
+         value: convertToDate('DD/MM/YYYY 23:00')
        };
 
     JsonService.query(function(data){
@@ -66,6 +66,11 @@ flightApp.controller('homeController', ['$scope','JsonService','seatService', fu
         seatService.seats = $scope.seats;
 
     });
+}]);
+
+flightApp.controller('flightController', ['$scope','JsonService','seatService', function($scope,JsonService,seatService){
+    
+    
 }]);
 
   function convertToDate(str) {

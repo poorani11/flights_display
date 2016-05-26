@@ -1,7 +1,9 @@
-<h1>Online Flight bookings with zero booking charges</h1>
+<h1 class="heading">AIRPLANES</h1>
+<hr/>
+<h1 class="sub1">Online Flight bookings with zero booking charges</h1>
 <div class="row">
     <div class="col-md-4">
-        <h4 toggle-visible class="pull-left">From</h4>
+        <h4 toggle-visible class="pull-left sub">From</h4>
         <form role="form">
             <div class="form-group">
                 <select class="form-control" id="sel1" ng-model="from_destination" ng-options="option.From as option.From for option in list | unique:'From'">
@@ -13,7 +15,7 @@
         <i class="fa fa-exchange exchange" aria-hidden="true"></i>
     </div>
     <div class="col-md-4">
-        <h4 toggle-visible class="pull-left">To</h4>
+        <h4 toggle-visible class="pull-left sub">To</h4>
         <form role="form">
             <div class="form-group">
                 <select class="form-control" id="sel1" ng-model="to_destination" ng-options="option.To as option.To for option in list | unique:'To'">
@@ -24,7 +26,7 @@
 </div>
 <div class="row">
     <div class="col-md-4">
-        <h4 toggle-visible class="pull-left">Date of Journey</h4>
+        <h4 toggle-visible class="pull-left sub">Date of Journey</h4>
         <form role="form">
             <div class="form-group">
                  <input type="date" id="exampleInput" class="form-control" name="input" ng-model="date.value"
@@ -35,7 +37,7 @@
      <div class="col-md-3 img_container">
     </div>
     <div class="col-md-4">
-        <h4 toggle-visible class="pull-left">No.of Seats</h4>
+        <h4 toggle-visible class="pull-left sub">No.of Seats</h4>
         <form role="form">
             <div class="form-group">
               <input type="text" ng-model="id" class="form-control" />
@@ -43,4 +45,4 @@
         </form>
     </div>
 </div>
-<a href="#/bank" class="btn btn-primary">Get Flights</a>
+<a href="#/flight-display" class="btn btn-primary">Get Flights</a>
