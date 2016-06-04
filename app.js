@@ -1,5 +1,9 @@
 // MODULE
-var flightApp = angular.module('flightApp', ['ngRoute', 'ngResource','ngCookies']);
+var flightApp = angular.module('flightApp', ['ngRoute', 'ngResource','LocalStorageModule']);
+
+ flightApp.config(['localStorageServiceProvider', function(localStorageServiceProvider){
+    localStorageServiceProvider.setPrefix('ls');
+  }]);
 
 // ROUTES
 flightApp.config(function ($routeProvider){
@@ -19,9 +23,10 @@ flightApp.config(function ($routeProvider){
 //SERVICEs
 flightApp.service('digestService', function(){
 
-    this.seats = "29";
+    this.seats = "0";
     this.from_destination = "Chennai";
     this.to_destination = "Delhi";
+    this.date = convertToDate('DD/MM/YYYY 23:00');
 
 });
 
@@ -51,25 +56,30 @@ flightApp.filter('unique', function() {
 });
 
 // CONTROLLERS
-flightApp.controller('homeController', ['$scope','JsonService','digestService', function($scope,JsonService,digestService){
+flightApp.controller('homeController', ['$scope','JsonService','digestService','localStorageService', function($scope,JsonService,digestService,localStorageService){
     
-    $scope.date = {
-         value: convertToDate('DD/MM/YYYY 23:00')
-       };
-
     JsonService.query(function(data){
         console.log(data);
         $scope.list= data;
     });
 
     $scope.seats = digestService.seats;
+    $scope.date = digestService.date;
     $scope.from_destination=digestService.from_destination;
     $scope.to_destination=digestService.to_destination;
 
-    $scope.$watch('[seats,from_destination,to_destination ]', function(){
+
+
+    $scope.$watch('[seats,date,from_destination,to_destination ]', function(){
         digestService.seats = $scope.seats;
+
+        digestService.date = $scope.date;
+
         digestService.from_destination = $scope.from_destination;
+      
+
         digestService.to_destination=$scope.to_destination;
+ 
 
 
     });
@@ -78,6 +88,7 @@ flightApp.controller('homeController', ['$scope','JsonService','digestService', 
 flightApp.controller('flightController', ['$scope','JsonService','digestService', function($scope,JsonService,digestService){
     
     $scope.seats = digestService.seats;
+    $scope.date = digestService.date;
     $scope.from_destination=digestService.from_destination;
     $scope.to_destination=digestService.to_destination;
 }]);
